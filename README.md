@@ -32,6 +32,25 @@
 $ yarn install
 ```
 
+## Structure Service
+
+```bash
+# for registration user [POST]
+/api/v1/registration
+
+# for login user [POST]
+/api/v1/authentication/login
+
+# for user purchase premium package if on registration not choose premium package [POST]
+/api/v1/registration/premium-package
+
+# for get list profile [GET]
+/api/v1/swipes
+
+# for swipe some profile [POST]
+/api/v1/swipes
+```
+
 ## Running the app
 
 ```bash
