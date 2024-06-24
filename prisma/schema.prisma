@@ -1,0 +1,58 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
+// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+enum Deriction {
+  LEFT
+  RIGHT
+}
+
+enum PackageType {
+  NO_SWIPE_QUOTA
+  VERIFIED_LABEL
+}
+
+model Users {
+  id               String             @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  username         String             @db.VarChar(20)
+  email            String             @db.VarChar(50)
+  password         String             @db.Text
+  isPremium        Boolean            @default(false)
+  createdAt        BigInt             @db.BigInt
+  updatedAt        BigInt?            @db.BigInt
+  PremiumPurchases PremiumPurchases[]
+
+  @@map("users")
+}
+
+model Swipes {
+  id        String    @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  swiperId  String    @db.Uuid
+  profileId String    @db.Uuid
+  deriction Deriction
+  createdAt BigInt    @db.BigInt
+
+  @@index(fields: [swiperId, profileId])
+  @@map("swipes")
+}
+
+model PremiumPurchases {
+  id          String      @id @default(dbgenerated("gen_random_uuid()")) @db.Uuid
+  userId      String      @db.Uuid
+  packageType PackageType
+  createdAt   BigInt      @db.BigInt
+  Users       Users       @relation(fields: [userId], references: [id])
+
+  @@map("premium_purchases")
+}
