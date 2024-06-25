@@ -33,7 +33,6 @@ export class SwipesServiceImpl implements SwipesService {
       const profileData = profile.data.map((row) => {
         delete row.password;
         delete row.createdAt;
-        delete row.updatedAt;
 
         const isVerified = row.PremiumPurchases.map((premium) =>
           premium.packageType === 'VERIFIED_LABEL' ? true : false,

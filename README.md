@@ -35,20 +35,30 @@ $ yarn install
 ## Structure Service
 
 ```bash
-# for registration user [POST]
-/api/v1/registration
-
-# for login user [POST]
-/api/v1/authentication/login
-
-# for user purchase premium package if on registration not choose premium package [POST]
-/api/v1/registration/premium-package
-
-# for get list profile [GET]
-/api/v1/swipes
-
-# for swipe some profile [POST]
-/api/v1/swipes
+/my-api-project
+|-- /prisma # directory for schema database and detail migration log
+|-- /test # directory for test file
+|-- /src # main source directory
+|   |-- /controllers # directory for control request from user
+|   |   |-- controller-file
+|   |-- /models # directory for all data transfer object or entity model
+|   |   |-- data-file
+|   |   |-- dto-file
+|   |-- /repository # directory for manage query or store data to database
+|   |   |-- repository-contract-file
+|   |   |-- repository-implementation-file
+|   |-- /services # directory for manage logic or business flow
+|   |   |-- service-contract-file
+|   |   |-- service-implementation-file
+|   |-- /utils # directory for all utilitas or helper
+|   |   |-- some-utils-file
+|   |-- /config # directory for config file or constant
+|   |   |-- some-config-file
+|   |-- /tests # directory for test
+|   |   |-- some-test-file
+|   |-- app-test-file
+|-- package.json
+|-- README.md
 ```
 
 ## Running the app

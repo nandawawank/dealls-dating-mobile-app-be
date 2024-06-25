@@ -30,7 +30,6 @@ model Users {
   password         String             @db.Text
   isPremium        Boolean            @default(false)
   createdAt        BigInt             @db.BigInt
-  updatedAt        BigInt?            @db.BigInt
   PremiumPurchases PremiumPurchases[]
 
   @@map("users")

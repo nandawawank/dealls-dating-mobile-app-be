@@ -57,10 +57,10 @@ export class RegistrationServiceImpl implements RegistrationService {
 
       return {
         code: HttpStatus.CREATED,
-        message: 'craeted',
+        message: 'created',
       };
     } catch (error) {
-      console.error(error);
+      // console.error(error);
       if (error instanceof InternalServerErrorException) {
         throw new InternalServerErrorException({
           code: HttpStatus.INTERNAL_SERVER_ERROR,

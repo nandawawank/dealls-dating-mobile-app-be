@@ -1,0 +1,33 @@
+@startuml test
+
+entity Users {
+    id uuid default(db_random_uuid()) <<PK>>
+    ---
+    username varchar(20)
+    email varchar(50)
+    password text
+    isPremium boolean default false
+    createdAt bigint
+}
+
+entity Swipes {
+    id uuid default(db_random_uuid()) <<PK>>
+    ---
+    swipesId uuid <<FK>>
+    profileId uuid
+    deriction enum('LEFT', 'RIGHT')
+    createdAt bigint
+}
+
+entity PremiumPurchases {
+    id uuid default(db_random_uuid()) <<PK>>
+    ---
+    userId uuid <<FK>>
+    packageType enum('NO_SWIPE_QUOTA','VERIFIED_LABEL')
+    createdAt bigint
+}
+
+' relation below
+Swipes ||--o{ Users
+PremiumPurchases |o--|| Users
+@enduml
